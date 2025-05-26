@@ -22,7 +22,10 @@
 #include <QDateTime>
 #include <QUuid>
 #include <QAction>
-
+#include "UserManager.h"
+#include <QDialog>
+#include <QSystemTrayIcon>
+#include <QApplication>
 
 // Message struct for storing individual messages
 struct Message {
@@ -98,6 +101,7 @@ public:
     MessageWidget(const Message &msg, QWidget *parent = nullptr);
     const Message& getMessage() const { return message; }
     void setHighlighted(bool highlighted);
+    bool getHighlighted() const { return isHighlighted; }  // Add this getter method
     QLabel *messageLabel;
 
 private:
@@ -107,6 +111,7 @@ private:
     QPushButton *menuButton;
     bool isHighlighted;
     QMenu *contextMenu;
+
 };
 
 class ChatWindow : public QWidget
@@ -122,14 +127,21 @@ private slots:
     void onSendMessage();
     void onLogout();
     void onAddContact();
+    void onContactRightClicked(const QPoint &position);
+    void onEditContact();
+    void onDeleteContact();
     void onSearchTextChanged();
+    void onProfileClicked();
+    void refreshCurrentChat();
     void onClearSearch();
     void onEditMessage(const QString &messageId);
     void onDeleteMessage(const QString &messageId);
+    void onSearchEnterPressed();
 
 private:
     void setupUI();
     void setupContactsList();
+    void refreshContactsList();
     void setupChatArea();
     void setupSearchBar();
     void addMessage(const QString &sender, const QString &message, bool isCurrentUser);
@@ -137,10 +149,21 @@ private:
     void loadSampleContacts();
     void loadChatHistory(const QString &contact);
     void addContactToList(const Contact &contact);
+    QTimer *autoMessageTimer;
+    QStringList autoMessageContacts;
+    QPushButton *profileButton;
+    QMenu *contactContextMenu;
+    QString rightClickedContact;
     void clearMessagesDisplay();
     void searchMessages(const QString &searchText);
     void highlightSearchResults(const QString &searchText);
+    void setupAutoMessages();
+    void sendAutoMessage();
     void clearHighlights();
+    QMap<QString, int> unreadCounts;  // Track unread messages per contact
+    QSystemTrayIcon *trayIcon;        // System tray icon for notifications
+    void showNotificationPopup(const QString &contactName, const QString &message);
+    void updateContactUnreadCount(const QString &contactName, int count);
 
     // Persistence methods
     void saveContacts();
