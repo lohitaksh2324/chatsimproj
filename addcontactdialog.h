@@ -19,6 +19,7 @@ class AddContactDialog : public QDialog
 public:
     explicit AddContactDialog(QWidget *parent = nullptr);
     ~AddContactDialog();
+    void setContactData(const QString &name, const QString &phone);
 
     Contact getContact() const;
 
@@ -45,3 +46,4 @@ private:
 };
 
 #endif // ADDCONTACTDIALOG_H
+
