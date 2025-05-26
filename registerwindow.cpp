@@ -168,10 +168,10 @@ void RegisterWindow::setupUI()
     // === Password Info ===
     QLabel *passwordInfo = new QLabel("💡 Password must be at least 6 characters long");
     passwordInfo->setStyleSheet(
-        "font-size: 13px; color: #6c757d;" // Reduced font size
+        "font-size: 12px; color: #6c757d;" // Reduced font size
         "background: rgba(102,126,234,0.08);"
-        "padding: 12px 16px; border-radius: 12px;" // Reduced padding and radius
-        "border-left: 4px solid #667eea; margin: 6px 0 16px 0;" // Reduced margins
+        "padding: 12px 16px; border-radius: 10px;" // Reduced padding and radius
+        "border-left: 4px solid #667eea; margin: 6px 0 16px 0;"
         );
     contentLayout->addWidget(passwordInfo);
 
@@ -326,3 +326,4 @@ bool RegisterWindow::isValidEmail(const QString &email)
     QRegularExpression emailRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     return emailRegex.match(email).hasMatch();
 }
+
