@@ -290,6 +290,13 @@ void AddContactDialog::setupUI()
     nameEdit->setFocus();
 }
 
+void AddContactDialog::setContactData(const QString &name, const QString &phone)
+{
+    // Assuming you have nameEdit and phoneEdit as member variables
+    nameEdit->setText(name);
+    phoneEdit->setText(phone);
+}
+
 void AddContactDialog::validateInput()
 {
     QString name = nameEdit->text().trimmed();
