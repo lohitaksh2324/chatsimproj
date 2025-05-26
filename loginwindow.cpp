@@ -152,7 +152,7 @@ void LoginWindow::setupUI()
 
     QLabel *userIcon = new QLabel("👤");
     userIcon->setStyleSheet(
-        "font-size: 18px; color: #6c757d; min-width: 20px;"
+        "font-size: 18px; color: #6c757d; min-width: 30px; min-height: 30px; margin-left: 7px; margin-top: 0px;"
         );
 
     usernameEdit = new QLineEdit();
@@ -196,7 +196,7 @@ void LoginWindow::setupUI()
 
     QLabel *lockIcon = new QLabel("🔒");
     lockIcon->setStyleSheet(
-        "font-size: 18px; color: #6c757d; min-width: 20px;"
+        "font-size: 18px; color: #6c757d; min-width: 20px; min-height: 30px; margin-left: 7px; margin-top: 0px;"
         );
 
     passwordEdit = new QLineEdit();
